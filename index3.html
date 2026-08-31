@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="fr"><head>
+<meta charset="UTF-8">
+<title>Playlist Machine Learning 2019</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    background: #0f0f0f;
+    color: #f1f1f1;
+    margin: 0;
+    padding: 0;
+  }
+  header {
+    position: sticky;
+    top: 0;
+    background: #181818;
+    padding: 16px 24px;
+    border-bottom: 1px solid #2a2a2a;
+    z-index: 10;
+  }
+  header h1 {
+    margin: 0 0 8px 0;
+    font-size: 20px;
+  }
+  .progress-bar-bg {
+    background: #2a2a2a;
+    border-radius: 6px;
+    height: 10px;
+    width: 100%;
+    max-width: 500px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    background: #3ea6ff;
+    height: 100%;
+    width: 0%;
+    transition: width .3s ease;
+  }
+  .progress-text {
+    font-size: 13px;
+    color: #aaa;
+    margin-top: 6px;
+  }
+  main {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 20px;
+    padding: 24px;
+  }
+  .card {
+    background: #181818;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #2a2a2a;
+    display: flex;
+    flex-direction: column;
+    transition: border-color .2s ease;
+  }
+  .card.done {
+    border-color: #3ea64f;
+  }
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+  }
+  .num {
+    background: #2a2a2a;
+    color: #ccc;
+    font-size: 12px;
+    border-radius: 50%;
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .card-header h3 {
+    font-size: 14px;
+    margin: 0;
+    line-height: 1.3;
+    font-weight: 500;
+  }
+  .video-wrap {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%;
+  }
+  .video-wrap iframe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    border: 0;
+  }
+  .check-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 14px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #ddd;
+    border-top: 1px solid #2a2a2a;
+  }
+  .check-label input {
+    width: 18px;
+    height: 18px;
+    accent-color: #3ea64f;
+    cursor: pointer;
+  }
+  .card.done .check-label {
+    background: rgba(62,166,79,0.08);
+    color: #7be08a;
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>🧠 Playlist Formation Machine Learning (2019) — Machine Learnia</h1>
+  <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressFill" style="width: 0%;"></div></div>
+  <div class="progress-text" id="progressText">0 / 10 vidéos terminées</div>
+</header>
+<main id="grid">
+
+  <div class="card" data-id="EUD07IiviJg">
+    <div class="card-header">
+      <span class="num">1</span>
+      <h3>FORMATION MACHINE LEARNING (2019) - ML#1</h3>
+    </div>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/EUD07IiviJg" title="FORMATION MACHINE LEARNING (2019) - ML#1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+    <label class="check-label">
+      <input type="checkbox" class="done-checkbox" data-id="EUD07IiviJg">
+      <span>J'ai terminé cette vidéo</span>
+    </label>
+  </div>
+
+
+  <div class="card" data-id="K9z0OD22My4">
+    <div class="card-header">
+      <span class="num">2</span>
+      <h3>APPRENTISSAGE SUPERVISÉ : LES 4 ÉTAPES - ML#2</h3>
+    </div>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/K9z0OD22My4" title="APPRENTISSAGE SUPERVISÉ : LES 4 ÉTAPES - ML#2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+    <label class="check-label">
+      <input type="checkbox" class="done-checkbox" data-id="K9z0OD22My4">
+      <span>J'ai terminé cette vidéo</span>
+    </label>
+  </div>
+
+
+  <div class="card" data-id="wg7-roETbbM">
+    <div class="card-header">
+      <span class="num">3</span>
+      <h3>LA RÉGRESSION LINÉAIRE (partie 1/2) - ML#3</h3>
+    </div>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/wg7-roETbbM" title="LA RÉGRESSION LINÉAIRE (partie 1/2) - ML#3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+    <label class="check-label">
+      <input type="checkbox" class="done-checkbox" data-id="wg7-roETbbM">
+      <span>J'ai terminé cette vidéo</span>
+    </label>
+  </div>
+
+
+  <div class="card" data-id="rcl_YRyoLIY">
+    <div class="card-header">
+      <span class="num">4</span>
+      <h3>DESCENTE DE GRADIENT (GRADIENT DESCENT) - ML#4</h3>
+    </div>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/rcl_YRyoLIY" title="DESCENTE DE GRADIENT (GRADIENT DESCENT) - ML#4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+    <label class="check-label">
+      <input type="checkbox" class="done-checkbox" data-id="rcl_YRyoLIY">
+      <span>J'ai terminé cette vidéo</span>
+    </label>
+  </div>
+
+
+  <div class="card" data-id="a3wYV2qXcMY">
+    <div class="card-header">
+      <span class="num">5</span>
+      <h3>MATRICES ET NUMPY - ML#5</h3>
+    </div>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/a3wYV2qXcMY" title="MATRICES ET NUMPY - ML#5" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+    <label class="check-label">
+      <input type="checkbox" class="done-checkbox" data-id="a3wYV2qXcMY">
+      <span>J'ai terminé cette vidéo</span>
+    </label>
+  </div>
+
+
+  <div class="card" data-id="8Y3r7F47Xfo">
+    <div class="card-header">
+      <span class="num">6</span>
+      <h3>RÉGRESSION LINÉAIRE (partie 2/2) - ML#6</h3>
+    </div>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/8Y3r7F47Xfo" title="RÉGRESSION LINÉAIRE (partie 2/2) - ML#6" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+    <label class="check-label">
+      <input type="checkbox" class="done-checkbox" data-id="8Y3r7F47Xfo">
+      <span>J'ai terminé cette vidéo</span>
+    </label>
+  </div>
+
+
+  <div class="card" data-id="8GBzamEdMOI">
+    <div class="card-header">
+      <span class="num">7</span>
+      <h3>PYTHON : L'ESSENTIEL POUR MACHINE LEARNING - ML#7</h3>
+    </div>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/8GBzamEdMOI" title="PYTHON : L'ESSENTIEL POUR MACHINE LEARNING - ML#7" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+    <label class="check-label">
+      <input type="checkbox" class="done-checkbox" data-id="8GBzamEdMOI">
+      <span>J'ai terminé cette vidéo</span>
+    </label>
+  </div>
+
+
+  <div class="card" data-id="vG6tDQc86Rs">
+    <div class="card-header">
+      <span class="num">8</span>
+      <h3>RÉGRESSION LINÉAIRE NUMPY - ML#8</h3>
+    </div>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/vG6tDQc86Rs" title="RÉGRESSION LINÉAIRE NUMPY - ML#8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+    <label class="check-label">
+      <input type="checkbox" class="done-checkbox" data-id="vG6tDQc86Rs">
+      <span>J'ai terminé cette vidéo</span>
+    </label>
+  </div>
+
+
+  <div class="card" data-id="cpltYCNLIt0">
+    <div class="card-header">
+      <span class="num">9</span>
+      <h3>RÉGRESSION LINÉAIRE MULTIPLE AVEC NUMPY - ML#9</h3>
+    </div>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/cpltYCNLIt0" title="RÉGRESSION LINÉAIRE MULTIPLE AVEC NUMPY - ML#9" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+    <label class="check-label">
+      <input type="checkbox" class="done-checkbox" data-id="cpltYCNLIt0">
+      <span>J'ai terminé cette vidéo</span>
+    </label>
+  </div>
+
+
+  <div class="card" data-id="FVdOVR9ahXg">
+    <div class="card-header">
+      <span class="num">10</span>
+      <h3>ÉQUATIONS NORMALES : D'où viennent-elles ? (Vidéo Archive juin 2019)</h3>
+    </div>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/FVdOVR9ahXg" title="ÉQUATIONS NORMALES : D'où viennent-elles ? (Vidéo Archive juin 2019)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+    <label class="check-label">
+      <input type="checkbox" class="done-checkbox" data-id="FVdOVR9ahXg">
+      <span>J'ai terminé cette vidéo</span>
+    </label>
+  </div>
+
+</main>
+<script>
+  const STORAGE_KEY = 'ml_playlist_2019_progress';
+  function loadProgress() {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; } catch(e) { return {}; }
+  }
+  function saveProgress(p) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(p));
+  }
+  function updateProgressBar() {
+    const total = document.querySelectorAll('.done-checkbox').length;
+    const done = document.querySelectorAll('.done-checkbox:checked').length;
+    document.getElementById('progressFill').style.width = (done/total*100) + '%';
+    document.getElementById('progressText').textContent = done + ' / ' + total + ' vidéos terminées';
+  }
+  const progress = loadProgress();
+  document.querySelectorAll('.done-checkbox').forEach(cb => {
+    const id = cb.dataset.id;
+    if (progress[id]) {
+      cb.checked = true;
+      cb.closest('.card').classList.add('done');
+    }
+    cb.addEventListener('change', () => {
+      const p = loadProgress();
+      p[id] = cb.checked;
+      saveProgress(p);
+      cb.closest('.card').classList.toggle('done', cb.checked);
+      updateProgressBar();
+    });
+  });
+  updateProgressBar();
+</script>
+
+</body></html>

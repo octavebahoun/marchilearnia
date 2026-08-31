@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plan de rattrapage — IA Pau 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F6EFE6; --panel:#FFFAF3; --card:#FFFBF5; --line:#E3D5C4;
+  --txt:#2A1F18; --muted:#8A7666; --a1:#C2643F; --a2:#E0913C;
+  --ok:#7A8B4A;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:var(--bg); color:var(--txt);
+  font-family:Inter,sans-serif; line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(700px 460px at 8% -8%, rgba(194,100,63,.13), transparent 70%),
+    radial-gradient(560px 420px at 96% 2%, rgba(224,145,60,.16), transparent 70%);
+}
+.wrap{max-width:1080px;margin:0 auto;padding:48px 20px 80px;position:relative;z-index:1}
+
+/* header */
+.kicker{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:600}
+h1{font-size:clamp(30px,5vw,50px);font-weight:800;letter-spacing:-.03em;line-height:1.05;margin:10px 0 14px}
+h1 span{background:linear-gradient(90deg,var(--a1),var(--a2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lede{color:var(--muted);max-width:620px;font-size:15px}
+
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:32px 0 44px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
+.stat b{display:block;font-size:24px;font-weight:700;letter-spacing:-.02em}
+.stat small{color:var(--muted);font-size:12px}
+
+h2{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);
+   font-weight:700;margin:44px 0 16px;padding-bottom:10px;border-bottom:1px solid var(--line)}
+
+/* journée type */
+.day{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:8px}
+.slot{display:flex;gap:16px;padding:13px 14px;border-bottom:1px solid var(--line);align-items:baseline}
+.slot:last-child{border:0}
+.slot time{font-variant-numeric:tabular-nums;font-weight:600;font-size:13px;color:var(--a1);min-width:104px}
+.slot p{font-size:14px}
+.slot em{display:block;color:var(--muted);font-style:normal;font-size:12.5px;margin-top:2px}
+
+/* semaines */
+.week{background:var(--card);border:1px solid var(--line);border-radius:16px;margin-bottom:12px;overflow:hidden;transition:border-color .2s}
+.week:hover{border-color:#D0B79C}
+.week > summary{
+  list-style:none;cursor:pointer;padding:18px 20px;display:flex;align-items:center;gap:16px;
+}
+.week > summary::-webkit-details-marker{display:none}
+.num{
+  width:38px;height:38px;flex:0 0 38px;border-radius:11px;display:grid;place-items:center;
+  font-weight:700;font-size:14px;background:linear-gradient(140deg,var(--a1),var(--a2));color:#FFFBF5
+}
+.wt{flex:1}
+.wt b{display:block;font-size:15.5px;font-weight:600;letter-spacing:-.01em}
+.wt small{color:var(--muted);font-size:12.5px}
+.chev{color:var(--muted);font-size:12px;transition:transform .2s}
+.week[open] .chev{transform:rotate(90deg)}
+.body{padding:0 20px 20px;border-top:1px solid var(--line);margin-top:2px;padding-top:18px}
+
+.block{margin-bottom:18px}
+.block h4{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--a2);font-weight:700;margin-bottom:8px}
+ul{list-style:none}
+li{font-size:14px;padding:5px 0 5px 18px;position:relative;color:#4A3B30}
+li::before{content:"";position:absolute;left:2px;top:13px;width:5px;height:5px;border-radius:50%;background:var(--a1);opacity:.7}
+.res li::before{background:var(--muted)}
+.res b{color:var(--txt);font-weight:600}
+.tag{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.06em;padding:2px 7px;border-radius:5px;margin-right:7px;vertical-align:1px}
+.yt{background:rgba(184,62,42,.12);color:#A8402A}
+.dc{background:rgba(122,139,74,.15);color:#5E6E34}
+.kg{background:rgba(194,100,63,.13);color:#A65434}
+.fr{background:rgba(224,145,60,.18);color:#96601D}
+.deliv{background:linear-gradient(140deg,rgba(194,100,63,.09),rgba(224,145,60,.11));
+  border:1px solid #E8D6C0;border-radius:11px;padding:12px 14px;font-size:13.5px}
+.deliv strong{color:var(--a2);font-weight:600}
+
+.note{background:var(--panel);border:1px solid var(--line);border-left:2px solid var(--a2);
+  border-radius:12px;padding:16px 18px;font-size:14px;color:#4A3B30;margin-top:14px}
+.note b{color:var(--txt)}
+footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:12.5px}
+@media(max-width:560px){.slot{flex-direction:column;gap:2px}.slot time{min-width:0}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<p class="kicker">Excellence Team — préparation CY Tech</p>
+<h1>Plan de rattrapage<br><span>IA Pau · 10 semaines</span></h1>
+<p class="lede">Objectif : arriver au premier cours en ayant déjà touché à chaque brique du programme. Pas de maîtrise complète — de la familiarité, et du code écrit de tes mains.</p>
+
+<div class="stats">
+  <div class="stat"><b>10</b><small>semaines</small></div>
+  <div class="stat"><b>6j</b><small>par semaine</small></div>
+  <div class="stat"><b>7h</b><small>par jour</small></div>
+  <div class="stat"><b>~420h</b><small>volume total</small></div>
+  <div class="stat"><b>10</b><small>livrables GitHub</small></div>
+</div>
+
+<h2>Journée type</h2>
+<div class="day">
+  <div class="slot"><time>08h00 — 10h00</time><p>Théorie<em>Vidéo ou DataCamp. Blocs de 25 min, 5 min de pause. Une notion à la fois.</em></p></div>
+  <div class="slot"><time>10h15 — 12h15</time><p>Code<em>Colab ou local. Tu réécris ce que tu viens de voir, sans copier-coller.</em></p></div>
+  <div class="slot"><time>14h00 — 16h00</time><p>Projet de la semaine<em>Le livrable avance tous les jours, même de 20 lignes.</em></p></div>
+  <div class="slot"><time>16h15 — 17h00</time><p>Rappel actif<em>Tu réexpliques la notion du matin à voix haute ou en 5 lignes dans un README.</em></p></div>
+  <div class="slot"><time>Samedi</time><p>Finition + push<em>Le livrable part sur GitHub avec un README propre.</em></p></div>
+  <div class="slot"><time>Dimanche</time><p>Repos complet<em>Non négociable. Le rythme tient sur 10 semaines seulement si tu coupes.</em></p></div>
+</div>
+
+<h2>Semestre 1 — les fondamentaux</h2>
+
+<details class="week" open>
+<summary><span class="num">01</span><span class="wt"><b>Maths de l'IA + NumPy / pandas</b><small>Algèbre linéaire, dérivées, probabilités</small></span><span class="chev">›</span></summary>
+<div class="body">
+  <div class="block"><h4>Contenu</h4><ul>
+    <li>Vecteurs, matrices, produit matriciel, transposée</li>
+    <li>Dérivée, dérivée partielle, gradient — la notion centrale du deep learning</li>
+    <li>Probabilités, espérance, variance, loi normale</li>
+    <li>NumPy (broadcasting, vectorisation) et pandas (groupby, merge, pivot)</li>
+  </ul></div>
+  <div class="block res"><h4>Ressources</h4><ul>
+    <li><span class="tag yt">YT</span><b>Machine Learnia</b> — playlists « Python spécial machine learning » et « Machine Learning » (les 10 premières vidéos couvrent le gradient)</li>
+    <li><span class="tag yt">YT</span><b>Mathrix</b> — algèbre linéaire et probabilités, format court</li>
+    <li><span class="tag yt">YT</span><b>3Blue1Brown</b> (sous-titres FR) — série « Essence of linear algebra », la meilleure intuition visuelle qui existe</li>
+    <li><span class="tag dc">DataCamp</span>Introduction to Statistics in Python · Data Manipulation with pandas</li>
+    <li><span class="tag kg">Kaggle</span>Pandas (micro-cours)</li>
+  </ul></div>
+  <div class="deliv"><strong>Livrable :</strong> un notebook où tu implémentes une descente de gradient en NumPy pur sur une régression linéaire, avec la courbe de perte tracée.</div>
+</div>
+</details>
+
+<details class="week">
+<summary><span class="num">02</span><span class="wt"><b>Machine learning classique</b><small>scikit-learn, métriques, validation</small></span><span class="chev">›</span></summary>
+<div class="body">
+  <div class="block"><h4>Contenu</h4><ul>
+    <li>Régression linéaire et logistique, k-NN, SVM</li>
+    <li>Arbres, random forest, gradient boosting (XGBoost, LightGBM)</li>
+    <li>Train/test, validation croisée, surapprentissage</li>
+    <li>Métriques : accuracy, précision, rappel, F1, ROC-AUC, RMSE</li>
+    <li>Feature engineering et pipelines sklearn</li>
+  </ul></div>
+  <div class="block res"><h4>Ressources</h4><ul>
+    <li><span class="tag yt">YT</span><b>Machine Learnia</b> — suite de la playlist « Machine Learning » (sklearn en détail)</li>
+    <li><span class="tag yt">YT</span><b>Science4All</b> — vidéos sur le biais/variance et la théorie de l'apprentissage</li>
+    <li><span class="tag dc">DataCamp</span>Supervised Learning with scikit-learn · Machine Learning with Tree-Based Models</li>
+    <li><span class="tag kg">Kaggle</span>Intro to Machine Learning · Intermediate Machine Learning · Feature Engineering</li>
+  </ul></div>
+  <div class="deliv"><strong>Livrable :</strong> une compétition Kaggle « Getting Started » terminée, soumission faite, notebook commenté en français.</div>
+</div>
+</details>
+
+<details class="week">
+<summary><span class="num">03</span><span class="wt"><b>Deep learning depuis zéro</b><small>Perceptron, backpropagation, à la main</small></span><span class="chev">›</span></summary>
+<div class="body">
+  <div class="block"><h4>Contenu</h4><ul>
+    <li>Neurone, fonctions d'activation, couches</li>
+    <li>Propagation avant, fonction de coût, rétropropagation</li>
+    <li>Descente de gradient stochastique, mini-batch, learning rate</li>
+    <li>Régularisation : dropout, batch norm, early stopping</li>
+    <li>Lire une architecture de modèle et comprendre ce qu'elle fait</li>
+  </ul></div>
+  <div class="block res"><h4>Ressources</h4><ul>
+    <li><span class="tag yt">YT</span><b>Machine Learnia</b> — playlist « Deep Learning », réseau de neurones codé from scratch</li>
+    <li><span class="tag yt">YT</span><b>Thibault Neveu</b> — deep learning expliqué en français, orienté intuition</li>
+    <li><span class="tag yt">YT</span><b>Andrej Karpathy</b> — « Neural Networks: Zero to Hero » (anglais, sous-titres auto). Fais au moins micrograd, ça vaut la semaine à lui seul.</li>
+    <li><span class="tag dc">DataCamp</span>Introduction to Deep Learning in Python</li>
+  </ul></div>
+  <div class="deliv"><strong>Livrable :</strong> un réseau à 2 couches cachées codé sans framework, entraîné sur MNIST, précision affichée.</div>
+</div>
+</details>
+
+<details class="week">
+<summary><span class="num">04</span><span class="wt"><b>PyTorch, TensorFlow, Hugging Face</b><small>Les librairies du module de 63h</small></span><span class="chev">›</span></summary>
+<div class="body">
+  <div class="block"><h4>Contenu</h4><ul>
+    <li>Tenseurs, autograd, nn.Module, DataLoader</li>
+    <li>Boucle d'entraînement écrite à la main en PyTorch</li>
+    <li>Keras/TensorFlow pour comparer les deux approches</li>
+    <li>Hugging Face : pipelines, from_pretrained, datasets, fine-tuning léger</li>
+    <li>Entraînement sur GPU Colab, sauvegarde et rechargement de poids</li>
+  </ul></div>
+  <div class="block res"><h4>Ressources</h4><ul>
+    <li><span class="tag dc">DataCamp</span>Introduction to Deep Learning with PyTorch · Intermediate Deep Learning with PyTorch</li>
+    <li><span class="tag fr">Doc</span>Cours Hugging Face — chapitres 1 à 3, traduits en français sur huggingface.co/learn</li>
+    <li><span class="tag yt">YT</span><b>Defend Intelligence</b> — vidéos PyTorch et modèles pré-entraînés</li>
+    <li><span class="tag kg">Kaggle</span>Intro to Deep Learning</li>
+  </ul></div>
+  <div class="deliv"><strong>Livrable :</strong> le même MNIST de la semaine 3, réécrit en PyTorch, puis en Keras. Tu compares le code et les temps.</div>
+</div>
+</details>
+
+<details class="week">
+<summary><span class="num">05</span><span class="wt"><b>Vision par ordinateur</b><small>CNN, transfer learning, YOLO, OCR</small></span><span class="chev">›</span></summary>
+<div class="body">
+  <div class="block"><h4>Contenu</h4><ul>
+    <li>Traitement d'image classique : filtres, seuillage, contours (OpenCV)</li>
+    <li>Convolution, pooling, architectures CNN (VGG, ResNet)</li>
+    <li>Transfer learning et fine-tuning sur un petit dataset</li>
+    <li>Détection d'objets avec YOLO (Ultralytics), annotation avec Roboflow</li>
+    <li>OCR avec Tesseract ou PaddleOCR</li>
+  </ul></div>
+  <div class="block res"><h4>Ressources</h4><ul>
+    <li><span class="tag yt">YT</span><b>Machine Learnia</b> — vidéos CNN et vision</li>
+    <li><span class="tag yt">YT</span><b>Thibault Neveu</b> — détection d'objets et applications</li>
+    <li><span class="tag dc">DataCamp</span>Image Processing in Python · Deep Learning for Images with PyTorch</li>
+    <li><span class="tag kg">Kaggle</span>Computer Vision</li>
+    <li><span class="tag fr">Doc</span>Documentation Ultralytics YOLO — quickstart et entraînement custom</li>
+  </ul></div>
+  <div class="deliv"><strong>Livrable :</strong> un détecteur entraîné sur tes propres photos annotées. Prends des devantures de boutiques — ça alimente directement ta cartographie du marché PK3.</div>
+</div>
+</details>
+
+<details class="week">
+<summary><span class="num">06</span><span class="wt"><b>NLP, d'avant les LLM jusqu'aux transformers</b><small>Le module de 49h suit exactement cette progression</small></span><span class="chev">›</span></summary>
+<div class="body">
+  <div class="block"><h4>Contenu</h4><ul>
+    <li>Histoire de l'IA depuis les années 50 : symbolique, hivers de l'IA, connexionnisme</li>
+    <li>NLP pré-LLM : tokenisation, stemming, sac de mots, TF-IDF, n-grammes</li>
+    <li>Word2Vec, GloVe, embeddings</li>
+    <li>RNN, LSTM, mécanisme d'attention</li>
+    <li>Transformers : « Attention is all you need », BERT vs GPT, fine-tuning</li>
+  </ul></div>
+  <div class="block res"><h4>Ressources</h4><ul>
+    <li><span class="tag yt">YT</span><b>Science4All</b> — série sur l'histoire de l'IA et le fonctionnement des LLM</li>
+    <li><span class="tag yt">YT</span><b>ScienceEtonnante</b> — vidéo sur GPT et les modèles de langage</li>
+    <li><span class="tag fr">Doc</span>Cours Hugging Face NLP — chapitres 4 à 7 (fine-tuning, tokenizers)</li>
+    <li><span class="tag dc">DataCamp</span>Introduction to NLP in Python · Introduction to LLMs in Python</li>
+    <li><span class="tag kg">Kaggle</span>Natural Language Processing</li>
+  </ul></div>
+  <div class="deliv"><strong>Livrable :</strong> un classifieur de texte fait deux fois — version TF-IDF + régression logistique, version BERT fine-tuné. Tu écris 10 lignes sur l'écart de performance et de coût.</div>
+</div>
+</details>
+
+<details class="week">
+<summary><span class="num">07</span><span class="wt"><b>Architecture microservices</b><small>UE2 — 42h au programme</small></span><span class="chev">›</span></summary>
+<div class="body">
+  <div class="block"><h4>Contenu</h4><ul>
+    <li>Monolithe contre microservices, découpage par domaine</li>
+    <li>REST et gRPC, contrats d'API, versionnage</li>
+    <li>Docker, docker-compose, images multi-étages</li>
+    <li>Communication asynchrone : RabbitMQ ou Kafka</li>
+    <li>API gateway, service discovery, bases de Kubernetes</li>
+  </ul></div>
+  <div class="block res"><h4>Ressources</h4><ul>
+    <li><span class="tag yt">YT</span><b>Xavki</b> — la référence francophone sur Docker, Kubernetes, Ansible, Terraform</li>
+    <li><span class="tag yt">YT</span><b>Cocadmin</b> — Docker et infrastructure expliqués simplement</li>
+    <li><span class="tag yt">YT</span><b>Grafikart</b> — Docker et déploiement, format tutoriel</li>
+    <li><span class="tag dc">DataCamp</span>Introduction to Docker</li>
+  </ul></div>
+  <div class="deliv"><strong>Livrable :</strong> ton modèle de la semaine 6 servi par une API FastAPI, dockerisée, avec un second service qui l'appelle. Un seul docker-compose up doit tout lancer.</div>
+</div>
+</details>
+
+<details class="week">
+<summary><span class="num">08</span><span class="wt"><b>DevOps et MLOps</b><small>Mise en production, monitoring, CI/CD</small></span><span class="chev">›</span></summary>
+<div class="body">
+  <div class="block"><h4>Contenu</h4><ul>
+    <li>Cycle de vie d'un modèle en production</li>
+    <li>MLflow : tracking d'expériences, registre de modèles</li>
+    <li>DVC pour versionner données et modèles</li>
+    <li>CI/CD avec GitHub Actions appliqué à un pipeline ML</li>
+    <li>Dérive des données, monitoring, réentraînement</li>
+  </ul></div>
+  <div class="block res"><h4>Ressources</h4><ul>
+    <li><span class="tag yt">YT</span><b>Xavki</b> — GitLab CI, GitHub Actions, observabilité</li>
+    <li><span class="tag dc">DataCamp</span>MLOps Concepts · MLOps Deployment and Life Cycling · Fully Automated MLOps</li>
+    <li><span class="tag fr">Doc</span>Documentation MLflow — quickstart et model registry</li>
+  </ul></div>
+  <div class="deliv"><strong>Livrable :</strong> pipeline complet — commit sur main, les tests passent, le modèle se réentraîne, l'image se construit, le déploiement part. Tu as déjà fait ça avec n8n, ici c'est la version ML.</div>
+</div>
+</details>
+
+<details class="week">
+<summary><span class="num">09</span><span class="wt"><b>Optimisation métaheuristique + calcul GPU</b><small>UE2 — 35h et 21h</small></span><span class="chev">›</span></summary>
+<div class="body">
+  <div class="block"><h4>Contenu</h4><ul>
+    <li>Algorithmes génétiques : population, croisement, mutation, sélection</li>
+    <li>Recuit simulé, recherche tabou, colonies de fourmis, essaims particulaires</li>
+    <li>Problèmes types : voyageur de commerce, sac à dos, ordonnancement</li>
+    <li>CUDA : modèle de threads, blocs et grilles, mémoire hôte contre mémoire device</li>
+    <li>Écrire un kernel, mesurer l'accélération contre la version CPU</li>
+  </ul></div>
+  <div class="block res"><h4>Ressources</h4><ul>
+    <li><span class="tag yt">YT</span><b>Machine Learnia</b> et <b>Science4All</b> — algorithmes génétiques et optimisation</li>
+    <li><span class="tag fr">Doc</span>Bibliothèques Python : DEAP, PyGAD, SciPy optimize — documentation et exemples</li>
+    <li><span class="tag yt">YT</span>Le CUDA en français est rare. Fallback : <b>NVIDIA Developer</b> et la série « CUDA Crash Course » de CoffeeBeforeArch, sous-titres auto.</li>
+    <li><span class="tag fr">Doc</span>Numba — le chemin le plus rapide pour écrire du CUDA depuis Python, testable dans Colab</li>
+  </ul></div>
+  <div class="deliv"><strong>Livrable :</strong> un voyageur de commerce résolu par algorithme génétique, plus un kernel Numba CUDA qui bat la version NumPy sur une multiplication de matrices.</div>
+</div>
+</details>
+
+<h2>Semestre 2 + culture ingénieur</h2>
+
+<details class="week">
+<summary><span class="num">10</span><span class="wt"><b>Quantique, IA responsable, portfolio</b><small>UE5, UE4 et préparation au PFE</small></span><span class="chev">›</span></summary>
+<div class="body">
+  <div class="block"><h4>Contenu</h4><ul>
+    <li>Qubit, superposition, intrication, portes quantiques</li>
+    <li>Algorithmes de Deutsch-Jozsa, Grover, Shor — l'idée, pas la démonstration</li>
+    <li>Qiskit dans Colab, un premier circuit exécuté</li>
+    <li>Biais des modèles, explicabilité, RGPD, AI Act européen</li>
+    <li>Nettoyage du portfolio GitHub et refonte du CV pour le forum stages</li>
+  </ul></div>
+  <div class="block res"><h4>Ressources</h4><ul>
+    <li><span class="tag yt">YT</span><b>ScienceEtonnante</b> — vidéos sur l'ordinateur quantique, excellente vulgarisation en français</li>
+    <li><span class="tag fr">Doc</span>IBM Quantum Learning — parcours débutant avec Qiskit, notebooks exécutables</li>
+    <li><span class="tag fr">Doc</span>CNIL — fiches sur IA et données personnelles, en français</li>
+    <li><span class="tag dc">DataCamp</span>Responsible AI Practices · AI Ethics</li>
+  </ul></div>
+  <div class="deliv"><strong>Livrable :</strong> les 9 projets rassemblés dans un README de profil GitHub, plus un CV français d'une page prêt pour le forum entreprises.</div>
+</div>
+</details>
+
+<div class="note">
+  <b>Si tu prends du retard.</b> Les semaines 1, 3, 4 et 6 sont celles qui portent tout le reste — ne les compresse jamais. Les semaines 7 et 8 sont les plus proches de ce que tu sais déjà faire avec Contravo et n8n : c'est là que tu peux couper si le temps manque. La semaine 9 peut se réduire à deux jours sans casser la suite.
+</div>
+
+<div class="note">
+  <b>La règle qui compte.</b> Une notion vue sans code écrit est une notion perdue. Chaque matinée de théorie doit produire au moins un notebook exécuté l'après-midi, même moche, même court.
+</div>
+
+<footer>Plan construit à partir du programme officiel IA Pau 2025-2026 · 672h réparties sur les deux semestres · Août 2026</footer>
+
+</div>
+</body>
+</html>

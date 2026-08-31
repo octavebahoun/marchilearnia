@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="fr"><head>
+<meta charset="UTF-8">
+<title>Playlist Python Machine Learning</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    background: #0f0f0f;
+    color: #f1f1f1;
+    margin: 0;
+    padding: 0;
+  }
+  header {
+    position: sticky;
+    top: 0;
+    background: #181818;
+    padding: 16px 24px;
+    border-bottom: 1px solid #2a2a2a;
+    z-index: 10;
+  }
+  header h1 {
+    margin: 0 0 8px 0;
+    font-size: 20px;
+  }
+  .progress-bar-bg {
+    background: #2a2a2a;
+    border-radius: 6px;
+    height: 10px;
+    width: 100%;
+    max-width: 500px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    background: #3ea6ff;
+    height: 100%;
+    width: 0%;
+    transition: width .3s ease;
+  }
+  .progress-text {
+    font-size: 13px;
+    color: #aaa;
+    margin-top: 6px;
+  }
+  main {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 20px;
+    padding: 24px;
+  }
+  .card {
+    background: #181818;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #2a2a2a;
+    display: flex;
+    flex-direction: column;
+    transition: border-color .2s ease;
+  }
+  .card.done {
+    border-color: #3ea64f;
+  }
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+  }
+  .num {
+    background: #2a2a2a;
+    color: #ccc;
+    font-size: 12px;
+    border-radius: 50%;
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .card-header h3 {
+    font-size: 14px;
+    margin: 0;
+    line-height: 1.3;
+    font-weight: 500;
+  }
+  .video-wrap {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%;
+  }
+  .video-wrap iframe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    border: 0;
+  }
+  .check-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 14px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #ddd;
+    border-top: 1px solid #2a2a2a;
+  }
+  .check-label input {
+    width: 18px;
+    height: 18px;
+    accent-color: #3ea64f;
+    cursor: pointer;
+  }
+  .card.done .check-label {
+    background: rgba(62,166,79,0.08);
+    color: #7be08a;
+  }
+</style>
+<style id="claude-agent-animation-styles">
+      @keyframes claude-pulse {
+        0%, 100% { opacity: 0.6; }
+        50% { opacity: 1; }
+      }
+      #claude-agent-glow-border-inner {
+        animation: claude-pulse 2s ease-in-out infinite;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        #claude-agent-glow-border-inner {
+          animation: none;
+        }
+      }
+    </style></head>
+<body>
+<header>
+  <h1>🐍 Playlist Python Spécial Machine Learning — Machine Learnia</h1>
+  <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressFill" style="width: 0%;"></div></div>
+  <div class="progress-text" id="progressText">0 / 34 vidéos terminées</div>
+</header>
+<main id="grid">
+
+  <div class="card" data-id="82KLS2C_gNQ">
+    <div class="card-header">
+      <span class="num">1</span>
+      <h3>FORMATION PYTHON MACHINE LEARNING (2020) (1/30)</h3>
+    </div>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/82KLS2C_gNQ" title="FORMATION PYTHON MACHINE LEARNING (2020) (1/30)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+    <label class="check-label">
+      <input type="checkbox" class="done-checkbox" data-id="82KLS2C_gNQ">
+      <span>J'ai terminé cette vidéo</span>
+    </label>
+  </div>
+
+
+  <div class="card" data-id="doFpNjdmsw8">
+    <div class="card-header">
+      <span class="num">2</span>
+      <h3>PYTHON VARIABLES ET FONCTIONS (2/30)</h3>
+    </div>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/doFpNjdmsw8" title="PYTHON VARIABLES ET FONCTIONS (2/30)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+    <label class="check-label">
+      <input type="checkbox" class="done-checkbox" data-id="doFpNjdmsw8">
+      <span>J'ai terminé cette vidéo</span>
+    </label>
+  </div>
+
+
+  <div class="card" data-id="x_Jeyvw7n9I">
+    <div class="card-header">
+      <span class="num">3</span>
+      <h3>PYTHON IF/ELSE, WHILE, FOR (3/30)</h3>
+    </div>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/x_Jeyvw7n9I" title="PYTHON IF/ELSE, WHILE, FOR (3/30)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+    <label class="check-label">
+      <input type="checkbox" class="done-checkbox" data-id="x_Jeyvw7n9I">
+      <span>J'ai terminé cette vidéo</span>
+    </label>
+  </div>
+
+
+  <div class="card" data-id="5UOSiCPu5aM">
+    <div class="card-header">
+      <span class="num">4</span>
+      <h3>PYTHON LISTES et TUPLES (4/30)</h3>
+    </div>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/5UOSiCPu5aM" title="PYTHON LISTES et TUPLES (4/30)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+    <label class="check-label">
+      <input type="checkbox" class="done-checkbox" data-id="5UOSiCPu5aM">
+      <span>J'ai terminé cette vidéo</span>
+    </label>
+  </div>
+
+
+  <div class="card" data-id="QR-gUWAeLqs">
+    <div class="card-header">
+      <span class="num">5</span>
+      <h3>PYTHON DICTIONNAIRES (5/30)</h3>
+    </div>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/QR-gUWAeLqs" title="PYTHON DICTIONNAIRES (5/30)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+    <label class="check-label">
+      <input type="checkbox" class="done-checkbox" data-id="QR-gUWAeLqs">
+      <span>J'ai terminé cette vidéo</span>
+    </label>
+  </div>
+
+
+  <div class="card" data-id="Whoe3p-sGEY">
+    <div class="card-header">
+      <span class="num">6</span>
+      <h3>PYTHON LIST DICT COMPREHENSION (6/30)</h3>
+    </div>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/Whoe3p-sGEY" title="PYTHON LIST DICT COMPREHENSION (6/30)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+    <label class="check-label">
+      <input type="checkbox" class="done-checkbox" data-id="Whoe3p-sGEY">
+      <span>J'ai terminé cette vidéo</span>
+    </label>
+  </div>
+
+
+  <div class="card" data-id="v7OTVy6whEY">
+    <div class="card-header">
+      <span class="num">7</span>
+      <h3>PYTHON BUILT-IN FUNCTIONS (7/30)</h3>
+    </div>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/v7OTVy6whEY" title="PYTHON BUILT-IN FUNCTIONS (7/30)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+    <label class="check-label">
+      <input type="checkbox" class="done-checkbox" data-id="v7OTVy6whEY">
+      <span>J'ai terminé cette vidéo</span>
+    </label>
+  </div>
+
+
+  <div class="card" data-id="mSh4h-J0z1c">
+    <div class="card-header">
+      <span class="num">8</span>
+      <h3>PYTHON MODULES ET PACKAGES (8/30)</h3>
+    </div>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/mSh4h-J0z1c" title="PYTHON MODULES ET PACKAGES (8/30)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+    <label class="check-label">
+      <input type="checkbox" class="done-checkbox" data-id="mSh4h-J0z1c">
+      <span>J'ai terminé cette vidéo</span>
+    </label>
+  </div>
+
+
+  <div class="card" data-id="2LdLiCtVUEA">
+    <div class="card-header">
+      <span class="num">9</span>
+      <h3>PYTHON PROGRAMMATION ORIENTÉE OBJET (9/30)</h3>
+    </div>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/2LdLiCtVUEA" title="PYTHON PROGRAMMATION ORIENTÉE OBJET (9/30)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+    <label class="check-label">
+      <input type="checkbox" class="done-checkbox" data-id="2LdLiCtVUEA">
+      <span>J'ai terminé cette vidéo</span>
+    </label>
+  </div>
+
+
+  <div class="card" data-id="NzDQTrqsxas">
+    <div class="card-header">
+      <span class="num">10</span>
+      <h3>PYTHON NUMPY machine learning (10/30)</h3>
+    </div>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/NzDQTrqsxas" title="PYTHON NUMPY machine learning (10/30)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+    <label class="check-label">
+      <input type="checkbox" class="done-checkbox" data-id="NzDQTrqsxas">
+      <span>J'ai terminé cette vidéo</span>
+    </label>
+  </div>
+
+
+  <div class="card" data-id="vw4u9uBFFqU">
+    <div class="card-header">
+      <span class="num">11</span>
+      <h3>PYTHON NUMPY Indexing Slicing Masking (11/30)</h3>
+    </div>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/vw4u9uBFFqU" title="PYTHON NUMPY Indexing Slicing Masking (11/30)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+    <label class="check-label">
+      <input type="checkbox" class="done-checkbox" data-id="vw4u9uBFFqU">
+      <span>J'ai terminé cette vidéo</span>
+    </label>
+  </div>
+
+
+  <div class="card" data-id="RwFiNlL4Q8g">
+    <div class="card-header">
+      <span class="num">12</span>
+      <h3>PYTHON NUMPY STATISTIQUES et MATHÉMATIQUES (12/30)</h3>
+    </div>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/RwFiNlL4Q8g" title="PYTHON NUMPY STATISTIQUES et MATHÉMATIQUES (12/30)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+    <label class="check-label">
+      <input type="checkbox" class="done-checkbox" data-id="RwFiNlL4Q8g">
+      <span>J'ai terminé cette vidéo</span>
+    </label>
+  </div>
+
+
+  <div class="card" data-id="lIESSFHGalA">
+    <div class="card-header">
+      <span class="num">13</span>
+      <h3>PYTHON NUMPY BROADCASTING (13/30)</h3>
+    </div>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/lIESSFHGalA" title="PYTHON NUMPY BROADCASTING (13/30)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+    <label class="check-label">
+      <input type="checkbox" class="done-checkbox" data-id="lIESSFHGalA">
+      <span>J'ai terminé cette vidéo</span>
+    </label>
+  </div>
+
+
+  <div class="card" data-id="O_OeWxpnUc0">
+    <div class="card-header">
+      <span class="num">14</span>
+      <h3>MATPLOTLIB - Les Bases ! (14/30)</h3>
+    </div>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/O_OeWxpnUc0" title="MATPLOTLIB - Les Bases ! (14/30)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+    <label class="check-label">
+      <input type="checkbox" class="done-checkbox" data-id="O_OeWxpnUc0">
+      <span>J'ai terminé cette vidéo</span>
+    </label>
+  </div>
+
+
+  <div class="card" data-id="MILtbfrMGL4">
+    <div class="card-header">
+      <span class="num">15</span>
+      <h3>MATPLOTLIB - Graphiques Importants (15/30)</h3>
+    </div>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/MILtbfrMGL4" title="MATPLOTLIB - Graphiques Importants (15/30)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+    <label class="check-label">
+      <input type="checkbox" class="done-checkbox" data-id="MILtbfrMGL4">
+      <span>J'ai terminé cette vidéo</span>
+    </label>
+  </div>
+
+
+  <div class="card" data-id="P0Xr5TIML8U">
+    <div class="card-header">
+      <span class="num">16</span>
+      <h3>SCIPY PYTHON Tutoriel (16/30)</h3>
+    </div>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/P0Xr5TIML8U" title="SCIPY PYTHON Tutoriel (16/30)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+    <label class="check-label">
+      <input type="checkbox" class="done-checkbox" data-id="P0Xr5TIML8U">
+      <span>J'ai terminé cette vidéo</span>
+    </label>
+  </div>
+
+
+  <div class="card" data-id="zZkNOdBWgFQ">
+    <div class="card-header">
+      <span class="num">17</span>
+      <h3>PANDAS PYTHON - Introduction + Titanic (17/30)</h3>
+    </div>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/zZkNOdBWgFQ" title="PANDAS PYTHON - Introduction + Titanic (17/30)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+    <label class="check-label">
+      <input type="checkbox" class="done-checkbox" data-id="zZkNOdBWgFQ">
+      <span>J'ai terminé cette vidéo</span>
+    </label>
+  </div>
+
+
+  <div class="card" data-id="qHRLG5hsW9I">
+    <div class="card-header">
+      <span class="num">18</span>
+      <h3>PANDAS PYTHON - Time Series (18/30)</h3>
+    </div>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/qHRLG5hsW9I" title="PANDAS PYTHON - Time Series (18/30)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+    <label class="check-label">
+      <input type="checkbox" class="done-checkbox" data-id="qHRLG5hsW9I">
+      <span>J'ai terminé cette vidéo</span>
+    </label>
+  </div>
+
+
+  <div class="card" data-id="xYgfIRzNPlo">
+    <div class="card-header">
+      <span class="num">19</span>
+      <h3>SEABORN PYTHON TUTORIEL (19/30)</h3>
+    </div>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/xYgfIRzNPlo" title="SEABORN PYTHON TUTORIEL (19/30)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+    <label class="check-label">
+      <input type="checkbox" class="done-checkbox" data-id="xYgfIRzNPlo">
+      <span>J'ai terminé cette vidéo</span>
+    </label>
+  </div>
+
+
+  <div class="card" data-id="P6kSc3qVph0">
+    <div class="card-header">
+      <span class="num">20</span>
+      <h3>PYTHON SKLEARN: KNN, LinearRegression (20/30)</h3>
+    </div>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/P6kSc3qVph0" title="PYTHON SKLEARN: KNN, LinearRegression (20/30)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+    <label class="check-label">
+      <input type="checkbox" class="done-checkbox" data-id="P6kSc3qVph0">
+      <span>J'ai terminé cette vidéo</span>
+    </label>
+  </div>
+
+
+  <div class="card" data-id="w_bLGK4Pteo">
+    <div class="card-header">
+      <span class="num">21</span>
+      <h3>PYTHON SKLEARN - MODEL SELECTION (21/30)</h3>
+    </div>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/w_bLGK4Pteo" title="PYTHON SKLEARN - MODEL SELECTION (21/30)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+    <label class="check-label">
+      <input type="checkbox" class="done-checkbox" data-id="w_bLGK4Pteo">
+      <span>J'ai terminé cette vidéo</span>
+    </label>
+  </div>
+
+
+  <div class="card" data-id="VoyMOVfCSfc">
+    <div class="card-header">
+      <span class="num">22</span>
+      <h3>CROSS-VALIDATION SKLEARN PYTHON</h3>
+    </div>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/VoyMOVfCSfc" title="CROSS-VALIDATION SKLEARN PYTHON" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+    <label class="check-label">
+      <input type="checkbox" class="done-checkbox" data-id="VoyMOVfCSfc">
+      <span>J'ai terminé cette vidéo</span>
+    </label>
+  </div>
+
+
+  <div class="card" data-id="_TE9fDgtOaE">
+    <div class="card-header">
+      <span class="num">23</span>
+      <h3>MÉTRIQUES de RÉGRESSIONS en DATA SCIENCE</h3>
+    </div>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/_TE9fDgtOaE" title="MÉTRIQUES de RÉGRESSIONS en DATA SCIENCE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+    <label class="check-label">
+      <input type="checkbox" class="done-checkbox" data-id="_TE9fDgtOaE">
+      <span>J'ai terminé cette vidéo</span>
+    </label>
+  </div>
+
+
+  <div class="card" data-id="OGWwzm304Xs">
+    <div class="card-header">
+      <span class="num">24</span>
+      <h3>PYTHON SKLEARN PRE-PROCESSING + PIPELINE (22/30)</h3>
+    </div>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/OGWwzm304Xs" title="PYTHON SKLEARN PRE-PROCESSING + PIPELINE (22/30)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+    <label class="check-label">
+      <input type="checkbox" class="done-checkbox" data-id="OGWwzm304Xs">
+      <span>J'ai terminé cette vidéo</span>
+    </label>
+  </div>
+
+
+  <div class="card" data-id="41mnga4ptso">
+    <div class="card-header">
+      <span class="num">25</span>
+      <h3>SKLEARN PIPELINE AVANCÉE</h3>
+    </div>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/41mnga4ptso" title="SKLEARN PIPELINE AVANCÉE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+    <label class="check-label">
+      <input type="checkbox" class="done-checkbox" data-id="41mnga4ptso">
+      <span>J'ai terminé cette vidéo</span>
+    </label>
+  </div>
+
+
+  <div class="card" data-id="QVEJJNsz-eM">
+    <div class="card-header">
+      <span class="num">26</span>
+      <h3>SKLEARN IMPUTER : NETTOYAGE DE DONNÉES</h3>
+    </div>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/QVEJJNsz-eM" title="SKLEARN IMPUTER : NETTOYAGE DE DONNÉES" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+    <label class="check-label">
+      <input type="checkbox" class="done-checkbox" data-id="QVEJJNsz-eM">
+      <span>J'ai terminé cette vidéo</span>
+    </label>
+  </div>
+
+
+  <div class="card" data-id="T4nZDuakYlU">
+    <div class="card-header">
+      <span class="num">27</span>
+      <h3>FEATURE SELECTION avec SKLEARN (23/30)</h3>
+    </div>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/T4nZDuakYlU" title="FEATURE SELECTION avec SKLEARN (23/30)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+    <label class="check-label">
+      <input type="checkbox" class="done-checkbox" data-id="T4nZDuakYlU">
+      <span>J'ai terminé cette vidéo</span>
+    </label>
+  </div>
+
+
+  <div class="card" data-id="FTtzd31IAOw">
+    <div class="card-header">
+      <span class="num">28</span>
+      <h3>APPRENTISSAGE NON-SUPERVISÉ avec Python (24/30)</h3>
+    </div>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/FTtzd31IAOw" title="APPRENTISSAGE NON-SUPERVISÉ avec Python (24/30)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+    <label class="check-label">
+      <input type="checkbox" class="done-checkbox" data-id="FTtzd31IAOw">
+      <span>J'ai terminé cette vidéo</span>
+    </label>
+  </div>
+
+
+  <div class="card" data-id="7C_YpudYtw8">
+    <div class="card-header">
+      <span class="num">29</span>
+      <h3>ENSEMBLE LEARNING : BAGGING, BOOSTING, STACKING (25/30)</h3>
+    </div>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/7C_YpudYtw8" title="ENSEMBLE LEARNING : BAGGING, BOOSTING, STACKING (25/30)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+    <label class="check-label">
+      <input type="checkbox" class="done-checkbox" data-id="7C_YpudYtw8">
+      <span>J'ai terminé cette vidéo</span>
+    </label>
+  </div>
+
+
+  <div class="card" data-id="1bJYEE9qgS4">
+    <div class="card-header">
+      <span class="num">30</span>
+      <h3>DATA SCIENCE ET DÉMARCHE DE TRAVAIL (26/30)</h3>
+    </div>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/1bJYEE9qgS4" title="DATA SCIENCE ET DÉMARCHE DE TRAVAIL (26/30)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+    <label class="check-label">
+      <input type="checkbox" class="done-checkbox" data-id="1bJYEE9qgS4">
+      <span>J'ai terminé cette vidéo</span>
+    </label>
+  </div>
+
+
+  <div class="card" data-id="u64sWJEP4S0">
+    <div class="card-header">
+      <span class="num">31</span>
+      <h3>EXPLORATORY DATA ANALYSIS - CORRIGÉ (27/30)</h3>
+    </div>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/u64sWJEP4S0" title="EXPLORATORY DATA ANALYSIS - CORRIGÉ (27/30)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+    <label class="check-label">
+      <input type="checkbox" class="done-checkbox" data-id="u64sWJEP4S0">
+      <span>J'ai terminé cette vidéo</span>
+    </label>
+  </div>
+
+
+  <div class="card" data-id="x8yu8sq8mdw">
+    <div class="card-header">
+      <span class="num">32</span>
+      <h3>PRÉ-TRAITEMENT DE DONNÉES avec Python (28/30)</h3>
+    </div>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/x8yu8sq8mdw" title="PRÉ-TRAITEMENT DE DONNÉES avec Python (28/30)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+    <label class="check-label">
+      <input type="checkbox" class="done-checkbox" data-id="x8yu8sq8mdw">
+      <span>J'ai terminé cette vidéo</span>
+    </label>
+  </div>
+
+
+  <div class="card" data-id="r58meM7ieaQ">
+    <div class="card-header">
+      <span class="num">33</span>
+      <h3>MODÈLE DE MACHINE LEARNING - Covid19 (29/30)</h3>
+    </div>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/r58meM7ieaQ" title="MODÈLE DE MACHINE LEARNING - Covid19 (29/30)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+    <label class="check-label">
+      <input type="checkbox" class="done-checkbox" data-id="r58meM7ieaQ">
+      <span>J'ai terminé cette vidéo</span>
+    </label>
+  </div>
+
+
+  <div class="card" data-id="6ThM6GVSzNI">
+    <div class="card-header">
+      <span class="num">34</span>
+      <h3>Apprendre le Machine Learning : Que faire maintenant ? (30/30)</h3>
+    </div>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/6ThM6GVSzNI" title="Apprendre le Machine Learning : Que faire maintenant ? (30/30)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+    <label class="check-label">
+      <input type="checkbox" class="done-checkbox" data-id="6ThM6GVSzNI">
+      <span>J'ai terminé cette vidéo</span>
+    </label>
+  </div>
+
+</main>
+<script>
+  const STORAGE_KEY = 'ml_playlist_progress';
+  function loadProgress() {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; } catch(e) { return {}; }
+  }
+  function saveProgress(p) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(p));
+  }
+  function updateProgressBar() {
+    const total = document.querySelectorAll('.done-checkbox').length;
+    const done = document.querySelectorAll('.done-checkbox:checked').length;
+    document.getElementById('progressFill').style.width = (done/total*100) + '%';
+    document.getElementById('progressText').textContent = done + ' / ' + total + ' vidéos terminées';
+  }
+  const progress = loadProgress();
+  document.querySelectorAll('.done-checkbox').forEach(cb => {
+    const id = cb.dataset.id;
+    if (progress[id]) {
+      cb.checked = true;
+      cb.closest('.card').classList.add('done');
+    }
+    cb.addEventListener('change', () => {
+      const p = loadProgress();
+      p[id] = cb.checked;
+      saveProgress(p);
+      cb.closest('.card').classList.toggle('done', cb.checked);
+      updateProgressBar();
+    });
+  });
+  updateProgressBar();
+</script>
+
+</body></html>
